@@ -96,7 +96,6 @@
         //为数据库设置缓存，提高查询效率
         [self.database setShouldCacheStatements:YES];
         if (![self.database tableExists:kUserTableName]) {
-//            NSString * sql = @"create table if not exists SUser(ID integer primary key autoincrement ,stu_userID TEXT not null, stu_age TEXT in default(0), stu_name TEXT)";
             NSString * sql = @"create table SUser(ID integer primary key autoincrement ,stu_userID TEXT, stu_age TEXT, stu_name TEXT)";
             BOOL ret = [_database executeUpdate:sql];
             if (!ret) {
@@ -169,7 +168,6 @@
             [self close];
             return;
         }else{
-//            FMResultSet * set = [_database executeQuery:@"select * from SUser where stu_userID = ? and stu_name = ?",userID,name];
             FMResultSet * set = [_database executeQuery:@"select * from SUser where stu_name = ?",name];
             if ([set next]) {
                 NSLog(@"%@",name);
